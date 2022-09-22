@@ -8,7 +8,7 @@ const Navbar = () => {
 
                 <ul className="nav navbar-nav d-flex">
                     <li className="nav-item">
-                        <a className="nav-link active" href="/contact-list">
+                        <a className="nav-link active" href="/">
                             Contacts
                         </a>
                     </li>

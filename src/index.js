@@ -11,7 +11,7 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
-                <Route path="/contact-list" element={<ContactPage />} />
+                <Route path="/" element={<ContactPage />} />
                 <Route path="/create-contact" element={<CreatePage />} />
             </Routes>
         </BrowserRouter>
