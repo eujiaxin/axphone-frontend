@@ -1,6 +1,6 @@
 # axphone-frontend
 
-[React framework](https://reactjs.org/) has been used to create the interface of **AxPhone**. Since a large database is not required, the default SQL engine [SQLite](https://www.sqlite.org/index.html) has been used to store all details on the contacts saved.
+[React framework](https://reactjs.org/) has been used to create the interface of **AxPhone**, which is a website that acts as a public phonebook for users. It interacts with the [backend Django REST Api](https://github.com/heheheejin/axphone-backend) to handle contacts. 
 
 ## Website navigation
 ### Default Home Page (`/`)
