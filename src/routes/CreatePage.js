@@ -1,9 +1,9 @@
 import Navbar from "../components/Navbar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../utils/API";
 
-const CreatePage = (props) => {
+const CreatePage = () => {
     // edit data
     const [name, setName] = useState("");
     const [phone_number, setPhoneNumber] = useState("");
