@@ -6,17 +6,15 @@ const ContactList = () => {
         { id: 2, name: "Lucy", phoneNumber: "01543212334" },
     ];
     return (
-        <div className="col-md-6 col-sm-10 mx-auto p-0">
-            <div className="card p-3">
-                <div className="list-group list-group-flush">
-                    {contacts.map((contact) => (
-                        <div>
-                            <h1>{contact.name}</h1>
-                            <span>{contact.phoneNumber}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
+        <div className="col-md-6 col-sm-10 mx-auto p-0 space-between">
+            <ul className="list-group p-5">
+                {contacts.map((contact) => (
+                    <li className="list-group-item p-3">
+                        <h2>{contact.name}</h2>
+                        <span>{contact.phoneNumber}</span>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
