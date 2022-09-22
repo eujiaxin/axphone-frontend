@@ -26,6 +26,10 @@ const ContactList = () => {
         API.patch(`contacts/${id}/`, item).then((res) => refreshContacts());
     };
 
+    const deleteHandler = (id) => {
+        API.delete(`contacts/${id}/`).then((res) => refreshContacts());
+    };
+
     return (
         <div className="col-md-6 col-sm-10 mx-auto p-0 space-between">
             <ul className="list-group p-5">
@@ -59,6 +63,7 @@ const ContactList = () => {
                                     data-toggle="tooltip"
                                     data-placement="top"
                                     title="Delete"
+                                    onClick={() => deleteHandler(contact.id)}
                                 >
                                     Delete
                                 </button>
