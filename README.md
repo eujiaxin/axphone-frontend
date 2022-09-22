@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# axphone-frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[React framework](https://reactjs.org/) has been used to create the interface of **AxPhone**. Since a large database is not required, the default SQL engine [SQLite](https://www.sqlite.org/index.html) has been used to store all details on the contacts saved.
 
-## Available Scripts
+## Website navigation
+### Default Home Page (`/`)
+The main page displays all the current contacts. Users are able to edit and delete any contacts displayed by clicking on the provided buttons.
+![image](https://user-images.githubusercontent.com/42997224/191855156-d8731e7c-47ec-4447-93f5-97c5b48ae729.png)
 
-In the project directory, you can run:
+Clicking on the edit button prompts a modal that allows users to update the contact. The input fields contain placeholders that indicate the original details of the contact.
+![image](https://user-images.githubusercontent.com/42997224/191855301-5c0d2339-2b22-4234-a02e-7b3daacdd786.png)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Create New Contact Page (`/create-contact`)
+Users can click on the top right navbar link to fill up details and create a new contact. Clicking on the "Create" button will redirect user back to the homepage with the updated contacts list displayed.
+![image](https://user-images.githubusercontent.com/42997224/191855636-5de26a63-9c8f-42a8-bae1-1d9934a18fb4.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Making requests to the [Backend API](https://github.com/heheheejin/axphone-backend)
+AxPhone is a website that stores contacts information,and allows users to create, read, update and delete (CRUD) relevant contacts. The following snippet from `API.js` represents the request header sent to the backend API endpoint using axios:
+```js
+...
+export default axios.create({
+    baseURL: API_ENDPOINT_URL,
+    headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+    },
+});
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
