@@ -1,5 +1,22 @@
 import Navbar from "../components/Navbar";
-const CreatePage = () => {
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import API from "../utils/API";
+
+const CreatePage = (props) => {
+    // edit data
+    const [name, setName] = useState("");
+    const [phone_number, setPhoneNumber] = useState("");
+
+    const navigate = useNavigate();
+
+    const createButtonHandler = (e) => {
+        e.preventDefault();
+        let contact = { name, phone_number };
+        console.log(contact);
+        API.post("contacts/", contact).then(() => navigate("/"));
+    };
+
     return (
         <>
             <Navbar />
@@ -21,6 +38,9 @@ const CreatePage = () => {
                                             class="form-control"
                                             id="name"
                                             name="name"
+                                            onChange={(e) =>
+                                                setName(e.target.value)
+                                            }
                                         />
                                     </div>
                                 </div>
@@ -35,6 +55,9 @@ const CreatePage = () => {
                                             class="form-control"
                                             id="phoneNumber"
                                             name="phoneNumber"
+                                            onChange={(e) =>
+                                                setPhoneNumber(e.target.value)
+                                            }
                                         />
                                     </div>
                                 </div>
@@ -43,6 +66,7 @@ const CreatePage = () => {
                                     <button
                                         type="submit"
                                         class="btn btn-primary btn-lg px-5"
+                                        onClick={createButtonHandler}
                                     >
                                         Create
                                     </button>
