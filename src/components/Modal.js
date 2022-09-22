@@ -1,6 +1,13 @@
-import API from "../utils/API";
+import { useState } from "react";
 
 const Modal = (props) => {
+    const [nameField, setNameField] = useState("");
+    const [phoneNumberField, setPhoneNumberField] = useState("");
+
+    const clearModal = () => {
+        setNameField("");
+        setPhoneNumberField("");
+    };
     return (
         <div class="modal fade" id="editModal" tabIndex="-1">
             <div class="modal-dialog">
@@ -25,10 +32,16 @@ const Modal = (props) => {
                                     type="text"
                                     class="form-control"
                                     id="name"
-                                    placeholder={props.originalName}
-                                    onChange={(e) =>
-                                        props.setName(e.target.value)
+                                    placeholder={
+                                        props.editContact
+                                            ? props.editContact.name
+                                            : ""
                                     }
+                                    onChange={(e) => {
+                                        props.setName(e.target.value);
+                                        setNameField(e.target.value);
+                                    }}
+                                    value={nameField}
                                 />
                             </div>
                             <div class="mb-3 px-3">
@@ -41,10 +54,16 @@ const Modal = (props) => {
                                 <input
                                     class="form-control"
                                     id="phone_number"
-                                    placeholder={props.originalPhoneNumber}
-                                    onChange={(e) =>
-                                        props.setPhoneNumber(e.target.value)
+                                    value={phoneNumberField}
+                                    placeholder={
+                                        props.editContact
+                                            ? props.editContact.phone_number
+                                            : ""
                                     }
+                                    onChange={(e) => {
+                                        props.setPhoneNumber(e.target.value);
+                                        setPhoneNumberField(e.target.value);
+                                    }}
                                 />
                             </div>
                         </form>
@@ -62,7 +81,8 @@ const Modal = (props) => {
                             class="btn btn-primary"
                             data-bs-dismiss="modal"
                             onClick={() => {
-                                props.editHandler(props.contactId);
+                                props.editHandler(props.editId);
+                                clearModal();
                             }}
                         >
                             Save changes

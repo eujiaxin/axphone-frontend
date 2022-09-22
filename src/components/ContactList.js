@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { propTypes } from "react-bootstrap/esm/Image";
 import API from "../utils/API";
 import Modal from "./Modal";
 
@@ -7,15 +8,11 @@ const ContactList = () => {
     // edit data
     const [name, setName] = useState("");
     const [phone_number, setPhoneNumber] = useState("");
-
-    useEffect(() => {
-        refreshContacts();
-    }, []);
+    const [editId, setEditId] = useState(-1);
 
     const refreshContacts = () => {
         API.get("contacts/")
             .then((res) => {
-                console.log(res);
                 setContacts(res.data);
             })
             .catch(console.error);
@@ -29,6 +26,10 @@ const ContactList = () => {
     const deleteHandler = (id) => {
         API.delete(`contacts/${id}/`).then((res) => refreshContacts());
     };
+
+    useEffect(() => {
+        refreshContacts();
+    }, [setContacts]);
 
     return (
         <>
@@ -46,16 +47,6 @@ const ContactList = () => {
                                     className="list-group-item p-3 d-flex justify-content-between"
                                     key={contact.id}
                                 >
-                                    <Modal
-                                        originalName={contact.name}
-                                        originalPhoneNumber={
-                                            contact.phone_number
-                                        }
-                                        contactId={contact.id}
-                                        editHandler={editHandler}
-                                        setName={setName}
-                                        setPhoneNumber={setPhoneNumber}
-                                    />
                                     <div className="ms-2 me-auto">
                                         <div className="h2">{contact.name}</div>
                                         <span className="h5">
@@ -71,6 +62,10 @@ const ContactList = () => {
                                             className="btn btn-outline-dark col-6"
                                             data-bs-toggle="modal"
                                             data-bs-target="#editModal"
+                                            onClick={() => {
+                                                setEditId(contact.id);
+                                                console.log(editId);
+                                            }}
                                         >
                                             Edit
                                         </button>
@@ -94,6 +89,13 @@ const ContactList = () => {
                     )}
                 </ul>
             </div>
+            <Modal
+                editHandler={editHandler}
+                setName={setName}
+                setPhoneNumber={setPhoneNumber}
+                editId={editId}
+                editContact={contacts.find((contact) => contact.id === editId)}
+            />
         </>
     );
 };
