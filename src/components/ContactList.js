@@ -4,10 +4,9 @@ import Modal from "./Modal";
 
 const ContactList = () => {
     const [contacts, setContacts] = useState([]);
-
     // edit data
     const [name, setName] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
+    const [phone_number, setPhoneNumber] = useState("");
 
     useEffect(() => {
         refreshContacts();
@@ -23,7 +22,7 @@ const ContactList = () => {
     };
 
     const editHandler = (id) => {
-        let item = { name };
+        let item = { name, phone_number };
         API.patch(`contacts/${id}/`, item).then((res) => refreshContacts());
     };
 
@@ -33,7 +32,6 @@ const ContactList = () => {
 
     return (
         <>
-            <Modal />
             <div className="col-md-6 col-sm-10 mx-auto p-0 space-between">
                 <ul className="list-group p-5">
                     {contacts.length === 0 ? (
@@ -43,40 +41,55 @@ const ContactList = () => {
                         </span>
                     ) : (
                         contacts.map((contact) => (
-                            <li className="list-group-item p-3 d-flex justify-content-between">
-                                <div className="ms-2 me-auto">
-                                    <div className="h2">{contact.name}</div>
-                                    <span className="h5">
-                                        {contact.phone_number}
-                                    </span>
-                                </div>
-                                <div
-                                    className="btn-group-vertical"
-                                    role="group"
+                            <>
+                                <li
+                                    className="list-group-item p-3 d-flex justify-content-between"
+                                    key={contact.id}
                                 >
-                                    <button
-                                        type="button"
-                                        className="btn btn-outline-dark col-6"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#editModal"
-                                    >
-                                        Edit
-                                    </button>
-
-                                    <button
-                                        class="btn btn-outline-danger col-6"
-                                        type="button"
-                                        data-toggle="tooltip"
-                                        data-placement="top"
-                                        title="Delete"
-                                        onClick={() =>
-                                            deleteHandler(contact.id)
+                                    <Modal
+                                        originalName={contact.name}
+                                        originalPhoneNumber={
+                                            contact.phone_number
                                         }
+                                        contactId={contact.id}
+                                        editHandler={editHandler}
+                                        setName={setName}
+                                        setPhoneNumber={setPhoneNumber}
+                                    />
+                                    <div className="ms-2 me-auto">
+                                        <div className="h2">{contact.name}</div>
+                                        <span className="h5">
+                                            {contact.phone_number}
+                                        </span>
+                                    </div>
+                                    <div
+                                        className="btn-group-vertical"
+                                        role="group"
                                     >
-                                        Delete
-                                    </button>
-                                </div>
-                            </li>
+                                        <button
+                                            type="button"
+                                            className="btn btn-outline-dark col-6"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#editModal"
+                                        >
+                                            Edit
+                                        </button>
+
+                                        <button
+                                            class="btn btn-outline-danger col-6"
+                                            type="button"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            title="Delete"
+                                            onClick={() =>
+                                                deleteHandler(contact.id)
+                                            }
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
+                                </li>
+                            </>
                         ))
                     )}
                 </ul>
