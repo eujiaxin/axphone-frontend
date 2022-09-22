@@ -3,11 +3,18 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ContactPage from "./routes/ContactPage";
+import CreatePage from "./routes/CreatePage";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
-        <App />
+        <BrowserRouter>
+            <Routes>
+                <Route path="/contact-list" element={<ContactPage />} />
+                <Route path="/create-contact" element={<CreatePage />} />
+            </Routes>
+        </BrowserRouter>
     </React.StrictMode>
 );
 

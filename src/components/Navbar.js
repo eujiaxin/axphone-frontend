@@ -1,3 +1,5 @@
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-light">
@@ -6,12 +8,12 @@ const Navbar = () => {
 
                 <ul className="nav navbar-nav d-flex">
                     <li className="nav-item">
-                        <a className="nav-link active" href="contact-list">
+                        <a className="nav-link active" href="/contact-list">
                             Contacts
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="create-contact">
+                        <a className="nav-link" href="/create-contact">
                             Add
                         </a>
                     </li>
