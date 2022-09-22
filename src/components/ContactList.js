@@ -17,18 +17,31 @@ const ContactList = () => {
                     contacts.map((contact) => (
                         <li className="list-group-item p-3 d-flex justify-content-between">
                             <div className="ms-2 me-auto">
-                                <h2>{contact.name}</h2>
-                                <span>{contact.phoneNumber}</span>
+                                <div className="h2">{contact.name}</div>
+                                <span className="h5">
+                                    {contact.phoneNumber}
+                                </span>
                             </div>
-                            <button
-                                class="btn btn-outline-dark"
-                                type="button"
-                                data-toggle="tooltip"
-                                data-placement="top"
-                                title="Edit"
-                            >
-                                Edit
-                            </button>
+                            <div className="btn-group-vertical" role="group">
+                                <button
+                                    class="btn btn-outline-dark col-6"
+                                    type="button"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Edit"
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    class="btn btn-outline-danger col-6"
+                                    type="button"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Delete"
+                                >
+                                    Delete
+                                </button>
+                            </div>
                         </li>
                     ))
                 )}
