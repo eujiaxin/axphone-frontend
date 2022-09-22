@@ -1,10 +1,22 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import API from "../utils/API";
 
 const ContactList = () => {
-    const contacts = [
-        { id: 1, name: "Jia Xin", phoneNumber: "0123456678" },
-        { id: 2, name: "Lucy", phoneNumber: "01543212334" },
-    ];
+    const [contacts, setContacts] = useState([]);
+
+    useEffect(() => {
+        refreshContacts();
+    }, []);
+
+    const refreshContacts = () => {
+        API.get("contacts/")
+            .then((res) => {
+                console.log(res);
+                setContacts(res.data);
+            })
+            .catch(console.error);
+    };
+
     return (
         <div className="col-md-6 col-sm-10 mx-auto p-0 space-between">
             <ul className="list-group p-5">
@@ -19,7 +31,7 @@ const ContactList = () => {
                             <div className="ms-2 me-auto">
                                 <div className="h2">{contact.name}</div>
                                 <span className="h5">
-                                    {contact.phoneNumber}
+                                    {contact.phone_number}
                                 </span>
                             </div>
                             <div className="btn-group-vertical" role="group">
