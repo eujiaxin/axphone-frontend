@@ -4,6 +4,10 @@ import API from "../utils/API";
 const ContactList = () => {
     const [contacts, setContacts] = useState([]);
 
+    // edit data
+    const [name, setName] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+
     useEffect(() => {
         refreshContacts();
     }, []);
@@ -15,6 +19,11 @@ const ContactList = () => {
                 setContacts(res.data);
             })
             .catch(console.error);
+    };
+
+    const editHandler = (id) => {
+        let item = { name };
+        API.patch(`contacts/${id}/`, item).then((res) => refreshContacts());
     };
 
     return (
